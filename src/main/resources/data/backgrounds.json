@@ -4,8 +4,8 @@
   "3": "Archaeologist",
   "4": "Athlete",
   "5": "Charlatan",
-  "6": "City watch",
-  "7": "Clan crafter",
+  "6": "City Watch",
+  "7": "Clan Crafter",
   "8": "Cloistered Scholar",
   "9": "Courtier",
   "10": "Criminal",
@@ -24,7 +24,7 @@
   "23": "Hermit",
   "24": "House Agent",
   "25": "Inheritor",
-  "26": "Investigator (detective)",
+  "26": "Investigator (Detective)",
   "27": "Investigator (VRGR)",
   "28": "Knight",
   "29": "Knight of the Order",
@@ -45,3 +45,4 @@
   "44": "Urban Bounty Hunter",
   "45": "Urchin"
 }
+
