@@ -23,6 +23,7 @@ I will be running this bot full-time for at least a few weeks after this reposit
 1) Click this [link](https://discord.com/oauth2/authorize?client_id=1440442322000154645) to invite the bot to a Discord server you have moderator permissions for.
 2) Give the bot the permissions it requested.
 3) Run the command with /newvictim once the bot has joined the server.
+4) You will need to manually add ability score changes from races and feats. Racial feats must be determined manually as well.
 
 ## 🏗️ Build & Run (Maven)
 If you want to change any of the settings the bot uses, you will need to download and run the bot yourself.
