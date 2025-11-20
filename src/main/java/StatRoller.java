@@ -25,4 +25,9 @@ public class StatRoller {
     public static int randomRange(int max){
         return ThreadLocalRandom.current().nextInt(1, max+1);
     }
+    public static void main(String[] args){
+        List<Integer> stats = rollStats();
+        System.out.println(stats);
+    }
 }
+
