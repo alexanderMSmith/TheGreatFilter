@@ -9,14 +9,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.Map;
+import java.util.logging.*;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public final class TraitLookup {
+public class TraitLookup {
 
     private final Map<Integer, String> characteristics;
-
+    private static final Logger LOGGER = Logger.getLogger(TraitLookup.class.getName());
     /**
      * Loads traits from JSON files located in resources.
      * @param jsonResourcePath path to the relevant json, e.g., "/data/feats.json"
@@ -28,14 +29,12 @@ public final class TraitLookup {
                 throw new IllegalArgumentException("Resource not found: " + jsonResourcePath);
             }
             ObjectMapper mapper = new ObjectMapper();
-            tempMap = mapper.readValue(
-                getClass().getResourceAsStream(jsonResourcePath),
-                new TypeReference<Map<Integer, String>>() {}
-            );
+            tempMap = mapper.readValue(is, new TypeReference<>() {});
+            characteristics = Collections.unmodifiableMap(tempMap); //Locks in the map
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load JSON: " + jsonResourcePath, e);
+            LOGGER.log(Level.SEVERE, "Failed to load traits from " + jsonResourcePath, e);
+            throw new RuntimeException("Failed to load traits from " + jsonResourcePath, e);
         }
-        characteristics = Collections.unmodifiableMap(tempMap); //Locks in the map
     }
     /**
      * Gets the characteristic name for a given ID.
@@ -45,4 +44,6 @@ public final class TraitLookup {
     public String getCharacteristic(int n) {
         return characteristics.getOrDefault(n, "Unknown");
     }
+
+    
 }
