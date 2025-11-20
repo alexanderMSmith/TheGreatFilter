@@ -74,7 +74,7 @@ public class TraitsSelector {
         return ThreadLocalRandom.current().nextInt(1, max+1);
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("=== Testing feats ===");
         List<String> featsList = feats(3);
         featsList.forEach(f -> System.out.println("Feat: " + f));
@@ -96,3 +96,4 @@ public class TraitsSelector {
         System.out.println("Race: " + race);
     }
 }
+
