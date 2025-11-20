@@ -62,7 +62,7 @@ public class TheFiltersWill extends ListenerAdapter{
     /**
      * @brief This class handles when a user uses a slash action, getting information based on the name
      * of the slash command then initialising the appropriate commands. Contains a few failsafe errors
-     * in case an error is immediatally found.
+     * in case an error is immediately found.
      * @param event The command the user inputted and some relevant info. 
      */
     @Override
@@ -167,4 +167,5 @@ public class TheFiltersWill extends ListenerAdapter{
         return type.getCharacteristic(id);
     }
 }
+
 
