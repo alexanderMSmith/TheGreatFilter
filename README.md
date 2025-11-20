@@ -11,9 +11,15 @@ A Discord bot that automatically creates a classless D&D 5e character with instr
 # ℹ️ Overview
 The Great Filter bot uses two classes and a set of JSON files to create classless characters for D&D 5e. In the default settings, races are biased so that more common and less exotic races occur more often than the exotic races. 
 
-The first class is TheFiltersWill.java, which runs the bot itself. The class runs the bot, parses commands to generate characters based on randomly selected traits from JSON files. The default traits are races, feats, backgrounds, stats, and languages. 
+The first class is GreatFilterBot.java, which runs the bot itself. The class runs the bot, parses commands to generate characters based on randomly selected traits from JSON files. This information is then passed to CharacterCreator.java, then the information is received and printed in the Discord channel that the slash command was activated in.
 
-The second class is TraitLookup.java. This class searches an associated JSON file decided during the creation of the instance. Each JSON file contains a mapping of integer IDs to characteristic names, except settings.json, which reuses the method in order to store integers that are parsed as int by the first class.
+The second class is CharacterCreator.java. This class creates the character by combining outputs from the TraitsSelector, StatRoller, and TraitLookup classes. It compiles it into a single message, then returns it to GreatFilterBot.java.
+
+The third class is TraitLookup.java. This class searches an associated JSON file decided during the creation of the instance. Each JSON file contains a mapping of integer IDs to characteristic names, except settings.json, which reuses the method in order to store integers that are parsed as int by the first class.
+
+The fourth class is StatRoller.java. This class rolls 4d6 dice, drops the lowest, and assigns that to the first empty ability score. This operation is repeated until every ability score is filled out, then the total is returned.
+
+The fifth class is TraitSelector.java. The generates the language priority, stat priority, background, race, and feats for characters.
 
 The first JSON file, backgrounds.json, contains 45 official backgrounds from D&D 5e, including their variants. As a result, some backgrounds, such as Criminal/Spy and Sailor/Pirate, are slightly more common.
 
