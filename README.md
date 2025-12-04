@@ -17,7 +17,7 @@ A Discord bot that automatically creates a classless D&D 5e character with instr
 
   
 # 🚀 Getting Started
-I will be running this bot full-time for at least a few weeks after this repository goes public. If this support ceases, send me an email at thecomputingsmith@gmail.com, and I will get the bot back online as soon as I'm able to. 
+The bot, currently, is not online with any frequency. If I ever proceed to run multiple bots 24/7 it will join the rest of them.
 
 ## Inviting the bot to your Discord server
 1) Click this [link](https://discord.com/oauth2/authorize?client_id=1440442322000154645) to invite the bot to a Discord server you have moderator permissions for.
