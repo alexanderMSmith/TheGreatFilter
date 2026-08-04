@@ -96,4 +96,3 @@ public class TraitsSelector {
         System.out.println("Race: " + race);
     }
 }
-

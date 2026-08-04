@@ -17,7 +17,7 @@ public class StatRoller {
                 dice.add(roll);
             }
             dice.sort(Comparator.reverseOrder());
-            int sum = dice.get(0) + dice.get(1) +dice.get(2);
+            int sum = dice.stream().limit(3).mapToInt(Integer::intValue).sum();
             rolledStats.add(sum);
         }
         return rolledStats;
@@ -25,9 +25,9 @@ public class StatRoller {
     public static int randomRange(int max){
         return ThreadLocalRandom.current().nextInt(1, max+1);
     }
+
     public static void main(String[] args){
         List<Integer> stats = rollStats();
         System.out.println(stats);
     }
 }
-
