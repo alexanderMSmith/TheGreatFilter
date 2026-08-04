@@ -112,7 +112,6 @@ stats.json contains the 6 base 5e stats, which are rolled with 4d6, dropping the
 * Ensures that the trait selection functionality generates unique feats and languages, avoids duplicates, and retrieves backgrounds.
 
 ## Future Improvements
-* Optimise TraitLookup by adding dependency injection.
 * Persist generated characters locally using CSV formatting.
 * Store configuration settings to allow loading of different rule sets.
 
