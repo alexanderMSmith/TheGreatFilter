@@ -36,12 +36,13 @@ If you want to change any of the settings the bot uses, you will need to downloa
 * A valid Discord bot token.
 
 ## 📦 Building the Project
+```
 git clone https://github.com/alexanderMSmith/TheGreatFilter.git
 
 cd TheGreatFilter
 
 mvn clean package
-
+```
 From the project root, run:
 ```
 mvn clean package
