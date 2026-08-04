@@ -107,6 +107,7 @@ stats.json contains the 6 base 5e stats, which are rolled with 4d6, dropping the
 * Implemented weighted randomization to reflect race and feat rarity and support additional configuration options.
 
 ## Future Improvements
+* Optimise TraitLookup by adding dependency injection.
 * Persist generated characters locally using CSV formatting.
 * Store configuration settings to allow loading of different rule sets.
 
