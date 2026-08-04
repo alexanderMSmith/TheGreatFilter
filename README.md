@@ -3,21 +3,23 @@
 ![Discord](https://img.shields.io/badge/Discord-Bot-5865F2)
 
 # The Great Filter
-A Discord bot that automatically creates a classless D&D 5e character with instructions on how to distribute stats, choose languages, and more. Meant to be used as part of the Great Filter rules set to make characters and get them through scenarios ASAP.
+A Discord bot that automatically creates a classless D&D 5e character with instructions on how to distribute stats, choose languages, and more. Meant to be used as part of the Great Filter ruleset to create characters and get them through scenarios ASAP.
 
 # 🌟 Highlights
 
 * Rapid creation of classless characters for D&D 5e
-* Customizable tables for races, languages, stats, and output settings to fit many use cases
 * Simple, easy-to-use slash command interface
 * A high variance in power level correlated with rarity by design
+* JSON-driven architecture allows game rules to be modified without recompiling
+* Weighted randomization system for configurable probability distributions
+* Modular design makes adding races, feats, and settings straightforward
 
 ## Example Output
 <img width="536" height="310" alt="image" src="https://github.com/user-attachments/assets/c1f263e0-c904-4b1d-9007-1fd06a2cb470" />
 
   
 # 🚀 Getting Started
-The bot, currently, is not online with any frequency. If I ever proceed to run multiple bots 24/7 it will join the rest of them.
+The bot is currently not online frequently. If I ever proceed to run multiple bots 24/7, it will join the rest of them.
 
 ## Inviting the bot to your Discord server
 1) Click this [link](https://discord.com/oauth2/authorize?client_id=1440442322000154645) to invite the bot to a Discord server you have moderator permissions for.
@@ -34,6 +36,12 @@ If you want to change any of the settings the bot uses, you will need to downloa
 * A valid Discord bot token.
 
 ## 📦 Building the Project
+git clone https://github.com/alexanderMSmith/TheGreatFilter.git
+
+cd TheGreatFilter
+
+mvn clean package
+
 From the project root, run:
 ```
 mvn clean package
@@ -51,7 +59,7 @@ Make sure your JSON configuration files are located in the /resources directory 
 
 The bot will start up using the token you configured inside GreatFilterBot.java.
 
-## Step by Step Guide
+## Step-by-Step Guide
 1) Acquire a bot token from the [Discord Developer](https://discord.com/developers/) portal.
 2) Build the project using the Build and Run instructions.
 3) Place the token in the spot marked [Bot Token] in GreatFilterBot.java. Make sure that the quotes around the brackets remain.
@@ -69,7 +77,7 @@ This project utilizes Java version 21 and JDA 5.0.0-beta.21
 The Great Filter bot uses five classes and a set of JSON files to create classless characters for D&D 5e. In the default settings, races are biased so that more common and less exotic races occur more often than the exotic races. 
 
 ## Java Classes
-The first class is GreatFilterBot.java, which runs the bot itself. The class additionally parses commands to generate characters based on randomly selected traits from JSON files. This information is then passed to CharacterCreator.java, and then the information is received and printed in the Discord channel where the slash command was activated.
+The first class is GreatFilterBot.java, which serves as the application's entry point. The class additionally parses commands to generate characters based on randomly selected traits from JSON files. This information is then passed to CharacterCreator.java, and then the information is received and printed in the Discord channel where the slash command was activated.
 
 The second class is CharacterCreator.java. This class creates the character by combining outputs from the TraitsSelector, StatRoller, and TraitLookup classes. It compiles it into a single message, then returns it to GreatFilterBot.java.
 
@@ -78,7 +86,6 @@ The third class is TraitLookup.java. This class searches an associated JSON file
 The fourth class is StatRoller.java. This class rolls 4d6 dice, drops the lowest, and assigns that to the first empty ability score. This operation is repeated until every ability score is filled out, then the total is returned.
 
 The fifth class is TraitSelector.java. It generates the language priority, stat priority, background, race, and feats for characters.
-
 
 ## JSON Files
 backgrounds.json contains 45 official backgrounds from D&D 5e, including their variants. As a result, some backgrounds, such as Criminal/Spy and Sailor/Pirate, are slightly more common.
@@ -92,6 +99,15 @@ raceTable.json contains many official D&D races and their subraces. Unlike other
 settings.json contains settings for the main Discord bot. The length of the stat and language priority list, and  the max value for each of the race, feats, and background tables.
 
 stats.json contains the 6 base 5e stats, which are rolled with 4d6, dropping the lowest value.
+
+## Design Decisions
+* Stored game data in JSON to facilitate customisation and balancing without requiring the application to be recompiled.
+* Divided character creation into focused classes to assist with debugging, feature expansion, and code clarity.
+* Implemented weighted randomization to reflect race and feat rarity and support additional configuration options.
+
+## Future Improvements
+* Persist generated characters locally using CSV formatting.
+* Store configuration settings to allow loading of different rule sets.
 
 # 🔧 Support
 If you need help or want to help, feel free to email me at thecomputingsmith@gmail.com.
