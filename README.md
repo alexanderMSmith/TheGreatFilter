@@ -106,6 +106,11 @@ stats.json contains the 6 base 5e stats, which are rolled with 4d6, dropping the
 * Divided character creation into focused classes to assist with debugging, feature expansion, and code clarity.
 * Implemented weighted randomization to reflect race and feat rarity and support additional configuration options.
 
+## Test Coverage
+* Ensures that six stats are rolled, stats are within a valid range, and the random distribution is within reasonable parameters.
+* Ensures trait lookup functionality for races and stats works properly, as well as properly throws exceptions.
+* Ensures that the trait selection functionality generates unique feats and languages, avoids duplicates, and retrieves backgrounds.
+
 ## Future Improvements
 * Optimise TraitLookup by adding dependency injection.
 * Persist generated characters locally using CSV formatting.
