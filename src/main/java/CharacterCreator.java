@@ -2,16 +2,25 @@ import java.util.List;
 
 public class CharacterCreator {
     public static String createCharacter(CharacterSettings chara) {
-        String race = TraitsSelector.getRace(chara.getRaceRange());
-        List<String> characterFeats = TraitsSelector.feats(chara.getFeatRange());
-        String background = TraitsSelector.getBackground(chara.getFeatRange());
+        RandomGenerator randomGen = new DefaultRandomGenerator();
+        TraitsSelector defaultSelector = new TraitsSelector(    
+            randomGen,
+            new TraitLookup("/data/feats.json"),
+            new TraitLookup("/data/languages.json"),
+            new TraitLookup("/data/stats.json"),
+            new TraitLookup("/data/raceTable.json"),
+            new TraitLookup("/data/backgrounds.json")
+        );
+        String race = defaultSelector.getRace(chara.getRaceRange());
+        List<String> characterFeats = defaultSelector.feats(chara.getFeatRange());
+        String background = defaultSelector.getBackground(chara.getFeatRange());
         List<Integer> rolledStats = StatRoller.rollStats();
         String message = printStats(rolledStats);
         message += "\nFeat: " + characterFeats.toString() + "\nBackground: " + background;
         message += "\nRace: " + race;
-        message += "\nStat Priority: " + TraitsSelector.getStatPriority
+        message += "\nStat Priority: " + defaultSelector.getStatPriority
             (chara.getStatPriorityRange(), chara.getStatRange()).toString();
-        message += "\nLanguage Priority " + TraitsSelector.getLanguagePriority
+        message += "\nLanguage Priority " + defaultSelector.getLanguagePriority
             (chara.getLanguagePriorityRange(), chara.getLanguageRange()).toString();
         return message;
     }

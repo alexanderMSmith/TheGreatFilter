@@ -9,14 +9,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.Map;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TraitLookup {
 
-    private final Map<Integer, String> characteristics;
+    private Map<Integer, String> characteristics;
     private static final Logger LOGGER = Logger.getLogger(TraitLookup.class.getName());
     /**
      * Loads traits from JSON files located in resources.
@@ -36,6 +37,15 @@ public class TraitLookup {
             throw new RuntimeException("Failed to load traits from " + jsonResourcePath, e);
         }
     }
+    /** Alternative constructor for Unit testing.
+     * 
+     * @param characteristics Injected Charicteristics.
+     */
+    public TraitLookup(Map<Integer, String> characteristics) {
+        this.characteristics =
+        Collections.unmodifiableMap(characteristics);
+    }
+
     /**
      * Gets the characteristic name for a given ID.
      * @param n The ID of the characteristic.
