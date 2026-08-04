@@ -68,8 +68,9 @@ public class GreatFilterBot extends ListenerAdapter{
      * @param event The slash command interaction event triggering the character creation.
      */
     public void newCharacter(SlashCommandInteractionEvent event){
-        String message = CharacterCreator.createCharacter(RACE_RANGE, FEAT_RANGE, BACKGROUND_RANGE,
+        CharacterSettings characterSet = new CharacterSettings(RACE_RANGE, FEAT_RANGE, BACKGROUND_RANGE,
             LANGUAGE_PRIORITY_RANGE, LANGUAGE_RANGE, STAT_PRIORITY_RANGE, STAT_RANGE);
+        String message = CharacterCreator.createCharacter(characterSet);
         event.reply(message).queue();
     }
 }
