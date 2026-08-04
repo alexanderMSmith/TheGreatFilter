@@ -1,4 +1,4 @@
-/** Currently being fixed.
+/** Currently being fixed to resolve design problems in TraitLookup.
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import java.lang.reflect.Field;
