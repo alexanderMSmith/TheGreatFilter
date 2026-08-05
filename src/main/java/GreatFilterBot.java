@@ -17,15 +17,6 @@ import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 
 public class GreatFilterBot extends ListenerAdapter{
     private static JDA api;
-    private static final TraitLookup settings = new 
-        TraitLookup("/data/settings.json");
-    public static final int RACE_RANGE = Integer.parseInt(settings.getCharacteristic(1));
-    public static final int FEAT_RANGE = Integer.parseInt(settings.getCharacteristic(2));
-    public static final int BACKGROUND_RANGE = Integer.parseInt(settings.getCharacteristic(3));
-    public static final int LANGUAGE_RANGE = Integer.parseInt(settings.getCharacteristic(4));
-    public static final int LANGUAGE_PRIORITY_RANGE = Integer.parseInt(settings.getCharacteristic(5));
-    public static final int STAT_RANGE = Integer.parseInt(settings.getCharacteristic(6));
-    public static final int STAT_PRIORITY_RANGE = Integer.parseInt(settings.getCharacteristic(7));
 
     /**
      *  The main method initialises the bot, setting up the commands it can use.
@@ -33,7 +24,15 @@ public class GreatFilterBot extends ListenerAdapter{
      * @throws InterruptedException
      */
     public static void main(String[] args) throws InterruptedException{
-        api = JDABuilder.createDefault("[Bot Token]")
+        String token = System.getenv("DISCORD_TOKEN");
+
+        if (token == null || token.isBlank()){
+            throw new IllegalStateException(
+                "DISCORD_TOKEN environment variable is not set."
+            );
+        }
+
+        api = JDABuilder.createDefault(token)
                 .addEventListeners(new GreatFilterBot())
                 .build();
 
@@ -46,7 +45,7 @@ public class GreatFilterBot extends ListenerAdapter{
 
     /**
      * This class handles when a user uses a slash action, getting information based on the name
-     * of the slash command then initialising the appropriate commands. Contains a few failsafe errors
+     * of the slash command, then initialising the appropriate commands. Contains a few failsafe errors
      * in case an error is immediately found.
      * @param event The command the user inputted and some relevant info. 
      */
@@ -68,8 +67,7 @@ public class GreatFilterBot extends ListenerAdapter{
      * @param event The slash command interaction event triggering the character creation.
      */
     public void newCharacter(SlashCommandInteractionEvent event){
-        CharacterSettings characterSet = new CharacterSettings(RACE_RANGE, FEAT_RANGE, BACKGROUND_RANGE,
-            LANGUAGE_PRIORITY_RANGE, LANGUAGE_RANGE, STAT_PRIORITY_RANGE, STAT_RANGE);
+        CharacterSettings characterSet = new CharacterSettings();
         String message = CharacterCreator.createCharacter(characterSet);
         event.reply(message).queue();
     }
