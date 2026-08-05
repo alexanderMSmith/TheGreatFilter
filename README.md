@@ -58,18 +58,18 @@ java -jar target/FilterBot-0.1-beta.jar
 ```
 Make sure your JSON configuration files are located in the /resources directory or alongside the JAR (depending on how your code loads resources).
 
-The bot will start up using the token you configured inside GreatFilterBot.java.
+The bot will start up using the token you configured in your environment variable.
 
 ## Step-by-Step Guide
 1) Acquire a bot token from the [Discord Developer](https://discord.com/developers/) portal.
 2) Build the project using the Build and Run instructions.
-3) Place the token in the spot marked [Bot Token] in GreatFilterBot.java. Make sure that the quotes around the brackets remain.
-4) Open the JSON files with a text editor. The quoted numbers on the left are the key slots.
+3) Set the GREAT_FILTER_DISCORD_TOKEN environment variable using "set DISCORD_TOKEN=YOUR_TOKEN" for Command Prompt or "$env:DISCORD_TOKEN="YOUR_TOKEN" for PowerShell.
+5) Open the JSON files with a text editor. The quoted numbers on the left are the key slots.
    - If you want to make an outcome more likely, give it an additional slot at the end of the list.
    - If you want to make the outcome less likely, remove it from the list. 
    - You may also add additional slots for new outcomes.
-5) Ensure there are no empty key slots between the first and last entry. If you delete Archeologist from the backgrounds, make sure  that the 3 key is replaced or every key is reduced in value by one.
-6) Change settings.json to reflect these new changes. The numbers in order are the race range for the race table, the feat range for the feat table, the background range for the background table, the language range and amount of priority languages you want each character to have, and lastly the stat range and the stat priority range you want each character to have.
+6) Ensure there are no empty key slots between the first and last entry. If you delete Archeologist from the backgrounds, make sure  that the 3 key is replaced or every key is reduced in value by one.
+7) Change settings.json to reflect these new changes. The numbers in order are the race range for the race table, the feat range for the feat table, the background range for the background table, the language range and amount of priority languages you want each character to have, and lastly the stat range and the stat priority range you want each character to have.
 
 # Dependencies
 This project utilizes Java version 21 and JDA 5.0.0-beta.21
