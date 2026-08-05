@@ -24,7 +24,7 @@ public class GreatFilterBot extends ListenerAdapter{
      * @throws InterruptedException
      */
     public static void main(String[] args) throws InterruptedException{
-        String token = System.getenv("DISCORD_TOKEN");
+        String token = System.getenv("GREAT_FILTER_DISCORD_TOKEN");
 
         if (token == null || token.isBlank()){
             throw new IllegalStateException(
