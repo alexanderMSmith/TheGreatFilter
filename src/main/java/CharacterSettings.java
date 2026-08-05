@@ -18,6 +18,18 @@ public class CharacterSettings{
         statRange = newStatRange;
     }
 
+    public CharacterSettings(){
+        final TraitLookup settings = new 
+            TraitLookup("/data/settings.json");
+        raceRange = Integer.parseInt(settings.getCharacteristic(1));
+        featRange = Integer.parseInt(settings.getCharacteristic(2));
+        backgroundRange = Integer.parseInt(settings.getCharacteristic(3));
+        languageRange = Integer.parseInt(settings.getCharacteristic(4));
+        languagePriorityRange = Integer.parseInt(settings.getCharacteristic(5));
+        statRange = Integer.parseInt(settings.getCharacteristic(6));
+        statPriorityRange = Integer.parseInt(settings.getCharacteristic(7));
+    }
+
     public int getRaceRange(){
         return raceRange;
     }
