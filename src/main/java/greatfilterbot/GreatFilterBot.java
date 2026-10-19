@@ -53,48 +53,6 @@ public class GreatFilterBot extends ListenerAdapter{
         commands.addCommands(
             Commands.slash("newvictim", "Creates another soul for The Great Filter")
         );
-
-        commands.addCommands(
-            Commands.slash("manus", "Utilize Manus")
-            .addOption(INTEGER, "anchor", "The anchor value", true)
-            .addOption(INTEGER, "stat", "The stat value", true)
-            .addOption(INTEGER, "potency", "The potency value", true)
-            .addOption(INTEGER, "power", "The power value", true)
-            .addOption(INTEGER, "pillarrank", "The pillar rank value", true)
-            .addOption(INTEGER, "modifier", "The modifier value", false)
-            .addOption(INTEGER, "diffmod", "Free potency, minimum 1", false)
-        );
-
-        commands.addCommands(
-            Commands.slash("psychic", "Utilize Psychic Powers")
-            .addOption(INTEGER, "vigorspent", "The amount of vigor spent", true)
-            .addOption(INTEGER, "vigorrequired", "The amount of vigor required", true)
-            .addOption(INTEGER, "severity", "The severity value", true)
-            .addOption(INTEGER, "modifier", "The modifier value", false)
-            .addOption(INTEGER, "rolltype", "The roll type (1=advantage, -1=disadvantage, 0=normal)", false)
-        );
-
-        commands.addCommands(
-            Commands.slash("science", "Utilize Enlightened Science")
-            .addOption(INTEGER, "depth", "The depth of the Wonder", true)
-            .addOption(INTEGER, "skillmod", "The skill modifier of the user", true)
-            .addOption(INTEGER, "dominance", "The dominance lue", false)
-        );
-        commands.addCommands(
-            Commands.slash("magic", "Utilize Magic")
-            .addOption(NUMBER, "schoolmod", "The school modiof the Wonder", true)
-            .addOption(INTEGER, "manaspent", "The amount of mana spent", true)
-            .addOption(INTEGER, "manarequired", "The amount of mana required", true)
-            .addOption(INTEGER, "level", "The level of the user", true)
-            .addOption(INTEGER, "magicmod", "The magic modifier", true)
-            .addOption(INTEGER, "familiarity", "The familiarity value", false)
-            .addOption(INTEGER, "originmod", "The origin modifier", false)
-            .addOption(INTEGER, "attenuation", "The attenuation value", false)
-            .addOption(INTEGER, "rollmax", "The maximum roll value", false)
-            .addOption(INTEGER, "rollmin", "The minimum roll value", false)
-            .addOption(INTEGER, "rolltype", "The roll type (1=advantage, -1=disadvantage, 0=normal)", false)
-            .addOption(INTEGER, "race", "The race of the user", false)
-        );
         commands.queue();
     }
 
