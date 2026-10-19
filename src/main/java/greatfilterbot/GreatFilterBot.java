@@ -1,0 +1,131 @@
+package greatfilterbot;
+
+/**
+ * This class runs the bot, parses commands to generate characters based on 
+ * randomly selected traits from JSON files. The default traits are races,
+ * feats, backgrounds, stats, and languages. 
+ * 
+ * @author Alexander Smith
+ * @version 1.0
+ */
+
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import static net.dv8tion.jda.api.interactions.commands.OptionType.INTEGER;
+import static net.dv8tion.jda.api.interactions.commands.OptionType.NUMBER;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
+
+
+public class GreatFilterBot extends ListenerAdapter{
+    private static JDA api;
+    private static final TraitLookup settings = new 
+        TraitLookup("/data/settings.json");
+    public static final int RACE_RANGE = Integer.parseInt(settings.getCharacteristic(1));
+    public static final int FEAT_RANGE = Integer.parseInt(settings.getCharacteristic(2));
+    public static final int BACKGROUND_RANGE = Integer.parseInt(settings.getCharacteristic(3));
+    public static final int LANGUAGE_RANGE = Integer.parseInt(settings.getCharacteristic(4));
+    public static final int LANGUAGE_PRIORITY_RANGE = Integer.parseInt(settings.getCharacteristic(5));
+    public static final int STAT_RANGE = Integer.parseInt(settings.getCharacteristic(6));
+    public static final int STAT_PRIORITY_RANGE = Integer.parseInt(settings.getCharacteristic(7));
+    
+    /**
+     *  The main method initialises the bot, setting up the commands it can use.
+     * @param args
+     * @throws InterruptedException
+     */
+    public static void main(String[] args) throws InterruptedException{
+        String token = System.getenv("DISCORD_TOKEN");
+
+        if (token == null || token.isBlank()){
+            throw new IllegalStateException(
+                "DISCORD_TOKEN environment variable is not set."
+            );
+        }
+        
+        api = JDABuilder.createDefault("Insert Token Here")
+                .addEventListeners(new GreatFilterBot())
+                .build();
+
+        CommandListUpdateAction commands = api.updateCommands(); //Everything from here on out makes the commands.
+        commands.addCommands(
+            Commands.slash("newvictim", "Creates another soul for The Great Filter")
+        );
+
+        commands.addCommands(
+            Commands.slash("manus", "Utilize Manus")
+            .addOption(INTEGER, "anchor", "The anchor value", true)
+            .addOption(INTEGER, "stat", "The stat value", true)
+            .addOption(INTEGER, "potency", "The potency value", true)
+            .addOption(INTEGER, "power", "The power value", true)
+            .addOption(INTEGER, "pillarrank", "The pillar rank value", true)
+            .addOption(INTEGER, "modifier", "The modifier value", false)
+            .addOption(INTEGER, "diffmod", "Free potency, minimum 1", false)
+        );
+
+        commands.addCommands(
+            Commands.slash("psychic", "Utilize Psychic Powers")
+            .addOption(INTEGER, "vigorspent", "The amount of vigor spent", true)
+            .addOption(INTEGER, "vigorrequired", "The amount of vigor required", true)
+            .addOption(INTEGER, "severity", "The severity value", true)
+            .addOption(INTEGER, "modifier", "The modifier value", false)
+            .addOption(INTEGER, "rolltype", "The roll type (1=advantage, -1=disadvantage, 0=normal)", false)
+        );
+
+        commands.addCommands(
+            Commands.slash("science", "Utilize Enlightened Science")
+            .addOption(INTEGER, "depth", "The depth of the Wonder", true)
+            .addOption(INTEGER, "skillmod", "The skill modifier of the user", true)
+            .addOption(INTEGER, "dominance", "The dominance lue", false)
+        );
+        commands.addCommands(
+            Commands.slash("magic", "Utilize Magic")
+            .addOption(NUMBER, "schoolmod", "The school modiof the Wonder", true)
+            .addOption(INTEGER, "manaspent", "The amount of mana spent", true)
+            .addOption(INTEGER, "manarequired", "The amount of mana required", true)
+            .addOption(INTEGER, "level", "The level of the user", true)
+            .addOption(INTEGER, "magicmod", "The magic modifier", true)
+            .addOption(INTEGER, "familiarity", "The familiarity value", false)
+            .addOption(INTEGER, "originmod", "The origin modifier", false)
+            .addOption(INTEGER, "attenuation", "The attenuation value", false)
+            .addOption(INTEGER, "rollmax", "The maximum roll value", false)
+            .addOption(INTEGER, "rollmin", "The minimum roll value", false)
+            .addOption(INTEGER, "rolltype", "The roll type (1=advantage, -1=disadvantage, 0=normal)", false)
+            .addOption(INTEGER, "race", "The race of the user", false)
+        );
+        commands.queue();
+    }
+
+    /**
+     * This class handles when a user uses a slash action, getting information based on the name
+     * of the slash command then initialising the appropriate commands. Contains a few failsafe errors
+     * in case an error is immediately found.
+     * @param event The command the user inputted and some relevant info. 
+     */
+    @Override
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event){
+        if (event.getGuild() == null)
+            return;
+        switch(event.getName()){
+            case "newvictim":
+                newCharacter(event);
+                break;
+            default:
+                event.reply("**Unauthorised**").setEphemeral(true).queue();
+        }
+    }
+
+    /**
+     * This method generates a new character with random traits and replies to the event with the character's details.
+     * @param event The slash command interaction event triggering the character creation.
+     */
+    public void newCharacter(SlashCommandInteractionEvent event){
+        CharacterSettings characterSet = new CharacterSettings();
+        String message = CharacterCreator.createCharacter(characterSet);
+        event.reply(message).queue();
+    }
+   
+}
+
