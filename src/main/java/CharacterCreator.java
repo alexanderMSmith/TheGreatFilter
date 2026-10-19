@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class CharacterCreator {
 
@@ -33,6 +34,7 @@ public class CharacterCreator {
     public static void main(String[] args){
         CharacterSettings chara = new CharacterSettings(225, 125, 45, 3, 15, 3, 6);
         String character = createCharacter(chara);
-        System.out.println(character);
+        Logger charaLogger = Logger.getLogger(CharacterCreator.class.getName());
+        charaLogger.info(character);
     }
 }

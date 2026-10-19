@@ -1,19 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class TraitsSelector {
     
-    /*
-    private TraitLookup feats = new TraitLookup("/data/feats.json");
-    private  TraitLookup languages = new 
-        TraitLookup("/data/languages.json");
-    private TraitLookup stats = new TraitLookup("/data/stats.json"); 
-    private TraitLookup races = new TraitLookup("/data/raceTable.json");
-    private  TraitLookup backgrounds = new 
-        TraitLookup("/data/backgrounds.json"); 
-    */
     private TraitLookup feats;
     private TraitLookup languages;
     private TraitLookup stats; 
@@ -52,9 +44,9 @@ public class TraitsSelector {
     /**
      * This method generates a set of prioritized languages for a character, up
      * to a predefined range.
-     * @return A HashSet containing the prioritized languages.
+     * @return A Set containing the prioritized languages.
      */
-    public HashSet<String> getLanguagePriority(int languagePriorityRange, int languageRange){
+    public Set<String> getLanguagePriority(int languagePriorityRange, int languageRange){
         HashSet<String> languagePriority = new HashSet<>();
         int i = 0;
         while (i < languagePriorityRange){

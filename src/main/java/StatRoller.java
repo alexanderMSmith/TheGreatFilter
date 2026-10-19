@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Logger;
 
 public class StatRoller {
     
@@ -28,6 +29,8 @@ public class StatRoller {
 
     public static void main(String[] args){
         List<Integer> stats = rollStats();
-        System.out.println(stats);
+        Logger statLogger = Logger.getLogger(StatRoller.class.getName());
+        statLogger.info(stats.toString());
+
     }
 }

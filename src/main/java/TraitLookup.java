@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TraitLookup {
 
     private Map<Integer, String> characteristics;
-    private static final Logger LOGGER = Logger.getLogger(TraitLookup.class.getName());
     /**
      * Loads traits from JSON files located in resources.
      * @param jsonResourcePath path to the relevant json, e.g., "/data/feats.json"
@@ -33,7 +30,6 @@ public class TraitLookup {
             tempMap = mapper.readValue(is, new TypeReference<>() {});
             characteristics = Collections.unmodifiableMap(tempMap); //Locks in the map
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Failed to load traits from " + jsonResourcePath, e);
             throw new RuntimeException("Failed to load traits from " + jsonResourcePath, e);
         }
     }
