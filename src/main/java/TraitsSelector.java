@@ -62,9 +62,9 @@ public class TraitsSelector {
 
      /**
      * This method generates a set of prioritized stats for a character, up to a predefined range.
-     * @return A HashSet containing the prioritized stats.
+     * @return A Set containing the prioritized stats.
      */
-    public HashSet<String> getStatPriority(int statPriorityRange, int statRange){
+    public Set<String> getStatPriority(int statPriorityRange, int statRange){
         HashSet<String> statPrio = new HashSet<>();
         int i = 0;
         while(i < statPriorityRange){
