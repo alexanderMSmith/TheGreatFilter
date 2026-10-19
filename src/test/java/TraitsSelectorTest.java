@@ -1,6 +1,6 @@
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -62,7 +62,7 @@ public class TraitsSelectorTest {
         //setRandomRangeReturn(1, 2, 3); // unique sequence
         RandomGenerator fakeRandom = new FakeRandomGenerator(1,2,3);
         selector.setRandomGenerator(fakeRandom);
-        HashSet<String> langs = selector.getLanguagePriority(3, 3);
+        Set<String> langs = selector.getLanguagePriority(3, 3);
         assertEquals(3, langs.size());
         assertTrue(langs.contains("Common"));
         assertTrue(langs.contains("Dwarvish"));
@@ -74,7 +74,7 @@ public class TraitsSelectorTest {
         //setRandomRangeReturn(1, 1, 2, 3);
         RandomGenerator fakeRandom = new FakeRandomGenerator(1,1,2,3);
         selector.setRandomGenerator(fakeRandom);
-        HashSet<String> langs = selector.getLanguagePriority(3, 3);
+        Set<String> langs = selector.getLanguagePriority(3, 3);
         assertEquals(3, langs.size());
     }
 
@@ -83,7 +83,7 @@ public class TraitsSelectorTest {
         //setRandomRangeReturn(3, 3, 2, 1);
         RandomGenerator fakeRandom = new FakeRandomGenerator(3,3,2,1);
         selector.setRandomGenerator(fakeRandom);
-        HashSet<String> stats = selector.getStatPriority(3, 3);
+        Set<String> stats = selector.getStatPriority(3, 3);
         assertEquals(3, stats.size());
         assertTrue(stats.contains("Strength"));
         assertTrue(stats.contains("Dexterity"));
@@ -106,3 +106,4 @@ public class TraitsSelectorTest {
         assertEquals("Elf", selector.getRace(3));
     }
 }
+
