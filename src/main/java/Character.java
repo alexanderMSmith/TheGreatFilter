@@ -5,10 +5,10 @@ import java.util.List;
 public class Character {
     private final String charaBackground;
     private final String charaRace;
-    private final List<Integer> charaStats = new ArrayList<>();;
-    private final List<String> charaFeats = new ArrayList<>();;
-    private List<String> charaStatPrio = new ArrayList<>();;
-    private List<String> charaLanguages = new ArrayList<>();;
+    private final List<Integer> charaStats = new ArrayList<>();
+    private final List<String> charaFeats = new ArrayList<>();
+    private List<String> charaStatPrio = new ArrayList<>();
+    private List<String> charaLanguages = new ArrayList<>();
 
 
     public Character(List<String> newTraits, List<Integer> newStats, List<String> newFeats, 
