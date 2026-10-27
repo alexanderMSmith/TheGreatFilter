@@ -32,7 +32,7 @@ public class TraitLookup {
             tempMap = mapper.readValue(is, new TypeReference<>() {});
             characteristics = Collections.unmodifiableMap(tempMap); //Locks in the map
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load traits from " + jsonResourcePath, e);
+            throw new TraitLoadException("Failed to load traits from " + jsonResourcePath, e);
         }
     }
     /** Alternative constructor for Unit testing.

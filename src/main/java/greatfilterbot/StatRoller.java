@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StatRoller {
@@ -32,7 +33,7 @@ public class StatRoller {
     public static void main(String[] args){
         List<Integer> stats = rollStats();
         Logger statLogger = Logger.getLogger(StatRoller.class.getName());
-        statLogger.info(stats.toString());
+        statLogger.log(Level.INFO, "Stats: {0}", stats);
 
     }
 }
